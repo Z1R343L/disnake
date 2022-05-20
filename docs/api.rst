@@ -4622,6 +4622,14 @@ ThreadMember
 .. autoclass:: ThreadMember()
     :members:
 
+ThreadTag
+~~~~~~~~~~
+
+.. attributetable:: ThreadTag
+
+.. autoclass:: ThreadTag()
+    :members:
+
 VoiceChannel
 ~~~~~~~~~~~~~
 
