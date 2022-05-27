@@ -26,18 +26,7 @@ import asyncio
 import datetime
 import functools
 from abc import ABC
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    Callable,
-    Dict,
-    List,
-    Optional,
-    Tuple,
-    TypeVar,
-    Union,
-    cast,
-)
+from typing import TYPE_CHECKING, Any, Callable, Dict, List, Optional, Tuple, TypeVar, Union, cast
 
 from disnake.app_commands import ApplicationCommand
 from disnake.enums import ApplicationCommandType
