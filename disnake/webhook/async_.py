@@ -693,15 +693,10 @@ class _WebhookState(Generic[WebhookT]):
         self._webhook: WebhookT = webhook
 
         self._parent: Optional[ConnectionState]
-        if isinstance(parent, _WebhookState):
-            self._parent = None
-        else:
-            self._parent = parent
+        self._parent = None if isinstance(parent, _WebhookState) else parent
 
     def _get_guild(self, guild_id):
-        if self._parent is not None:
-            return self._parent._get_guild(guild_id)
-        return None
+        return self._parent._get_guild(guild_id) if self._parent is not None else None
 
     def store_user(self, data):
         if self._parent is not None:
@@ -1605,7 +1600,7 @@ class Webhook(BaseWebhook):
         if view is not MISSING:
             if isinstance(self._state, _WebhookState):
                 raise InvalidArgument("Webhook views require an associated state with the webhook")
-            if ephemeral is True and view.timeout is None:
+            if ephemeral and view.timeout is None:
                 view.timeout = 15 * 60.0
 
         params = handle_message_parameters(

@@ -276,7 +276,7 @@ class Embed:
             except KeyError:
                 continue
             else:
-                setattr(self, "_" + attr, value)
+                setattr(self, f"_{attr}", value)
 
         return self
 
@@ -784,7 +784,7 @@ class Embed:
             The colour that was set.
 
         """
-        if value == None:
+        if value is None:
             cls._default_colour = cls.Empty
         elif isinstance(value, (Colour, _EmptyEmbed)):
             cls._default_colour = value
