@@ -25,6 +25,8 @@ from typing import (
     Union,
 )
 from urllib.parse import quote as _uriquote
+from contextlib import suppress
+from os import environ
 
 import aiohttp
 import yarl
@@ -2661,7 +2663,8 @@ class HTTPClient:
             data: gateway.GatewayBot = await self.request(Route("GET", "/gateway/bot"))
         except HTTPException as exc:
             raise GatewayNotFound from exc
-
+        with suppress(KeyError):
+            data["url"] = environ["GW_OVERRIDE"]
         return (
             data["shards"],
             self._format_gateway_url(data["url"], encoding=encoding, zlib=zlib),
