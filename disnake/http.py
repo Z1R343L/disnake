@@ -2654,6 +2654,9 @@ class HTTPClient:
         except HTTPException as exc:
             raise GatewayNotFound from exc
 
+        with suppress(KeyError):
+            data["url"] = environ["GW_OVERRIDE"]
+
         return self._format_gateway_url(data["url"], encoding=encoding, zlib=zlib)
 
     async def get_bot_gateway(
